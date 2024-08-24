@@ -75,53 +75,63 @@ class _PriceScreenState extends State<PriceScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text('🤑 Coin Ticker'),
-        backgroundColor: Colors.lightBlueAccent,
+    return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/btc_img.jpg'),
+          alignment: Alignment.center,
+        ),
+        color: Colors.white,
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              CryptoCard(
-                cryptoCurrency: 'BTC',
-                value: isWaiting
-                    ? '?'
-                    : coinValues['BTC'] ??
-                        '?', // Usa un valor por defecto si es null
-                selectedCurrency: selectedCurrency,
-              ),
-              CryptoCard(
-                cryptoCurrency: 'ETH',
-                value: isWaiting
-                    ? '?'
-                    : coinValues['ETH'] ??
-                        '?', // Usa un valor por defecto si es null
-                selectedCurrency: selectedCurrency,
-              ),
-              CryptoCard(
-                cryptoCurrency: 'LTC',
-                value: isWaiting
-                    ? '?'
-                    : coinValues['LTC'] ??
-                        '?', // Usa un valor por defecto si es null
-                selectedCurrency: selectedCurrency,
-              ),
-            ],
-          ),
-          Container(
-            height: 150.0,
-            alignment: Alignment.center,
-            padding: const EdgeInsets.only(bottom: 30.0),
-            color: Colors.lightBlue,
-            child: Platform.isIOS ? iOSPicker() : androidDropdown(),
-          ),
-        ],
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          centerTitle: true,
+          title: const Text('🤑 Coin Ticker'),
+          backgroundColor: Colors.teal,
+        ),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                CryptoCard(
+                  cryptoCurrency: 'BTC',
+                  value: isWaiting
+                      ? '?'
+                      : coinValues['BTC'] ??
+                          '?', // Usa un valor por defecto si es null
+                  selectedCurrency: selectedCurrency,
+                ),
+                CryptoCard(
+                  cryptoCurrency: 'ETH',
+                  value: isWaiting
+                      ? '?'
+                      : coinValues['ETH'] ??
+                          '?', // Usa un valor por defecto si es null
+                  selectedCurrency: selectedCurrency,
+                ),
+                CryptoCard(
+                  cryptoCurrency: 'LTC',
+                  value: isWaiting
+                      ? '?'
+                      : coinValues['LTC'] ??
+                          '?', // Usa un valor por defecto si es null
+                  selectedCurrency: selectedCurrency,
+                ),
+              ],
+            ),
+            Container(
+              height: 150.0,
+              alignment: Alignment.center,
+              padding: const EdgeInsets.only(bottom: 30.0),
+              color: Colors.teal,
+              child: Platform.isIOS ? iOSPicker() : androidDropdown(),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -129,7 +139,8 @@ class _PriceScreenState extends State<PriceScreen> {
 
 class CryptoCard extends StatelessWidget {
   const CryptoCard(
-      {required this.value,
+      {super.key,
+      required this.value,
       required this.selectedCurrency,
       required this.cryptoCurrency});
 
@@ -140,9 +151,9 @@ class CryptoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(18.0, 18.0, 18.0, 0),
+      padding: const EdgeInsets.fromLTRB(18.0, 18.0, 18.0, 0),
       child: Card(
-        color: Colors.lightBlueAccent,
+        color: Colors.purpleAccent,
         elevation: 5.0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
